@@ -1,150 +1,169 @@
 /* Reset */
-body, h1, h2, a {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+body,
+h1,
+h2,
+a {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f9f9f9;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* Header */
 header {
-    background-color: #2c3e50;
-    color: white;
-    padding: 20px;
-    text-align: center;
+  background-color: #2c3e50;
+  color: white;
+  padding: 20px;
+  text-align: center;
 }
 
 header h1 {
-    font-size: 2em; /* Tamanho padrão */
-    margin-bottom: 10px;
+  font-size: 2em; /* Tamanho padrão */
+  margin-bottom: 10px;
 }
 
 header p {
-    font-size: 1em; /* Tamanho padrão */
+  font-size: 1em; /* Tamanho padrão */
 }
 
 /* Layout container */
 .container {
-    display: flex;
-    flex: 1;
-    flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
 }
 
 /* Navigation menu */
 nav {
-    width: 200px;
-    background-color: #34495e;
-    color: white;
-    padding: 20px;
-    height: 100vh; /* Ocupa toda a altura da janela */
-    position: fixed; /* Fixa o nav na lateral esquerda */
-    top: 0;
-    left: 0;
-    box-sizing: border-box;
+  width: 200px;
+  background-color: #34495e;
+  color: white;
+  padding: 20px;
+  height: 100vh; /* Ocupa toda a altura da janela */
+  position: fixed; /* Fixa o nav na lateral esquerda */
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  overflow-y: auto; /* Adiciona rolagem vertical se necessário */
 }
 
 nav h2 {
-    font-size: 18px;
-    color: #ecf0f1;
-    border-bottom: 1px solid #ecf0f1;
-    margin-bottom: 20px;
+  font-size: 18px;
+  color: #ecf0f1;
+  border-bottom: 1px solid #ecf0f1;
+  margin-bottom: 20px;
 }
 
 nav a {
-    color: #ecf0f1;
-    text-decoration: none;
-    display: block;
-    margin: 10px 0;
+  color: #ecf0f1;
+  text-decoration: none;
+  display: block;
+  margin: 10px 0;
 }
 
 nav a:hover {
-    color: #1abc9c;
+  color: #1abc9c;
+}
+
+nav ul,
+nav li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li ul li {
+  padding-left: 20px; /* Ajuste o valor conforme necessário */
+}
+
+nav li {
+  padding-left: 5px; /* Ajuste o valor conforme necessário */
 }
 
 /* Main content */
 main {
-    margin-left: 220px; /* Espaço ao lado do nav */
-    padding: 20px;
-    max-width: calc(100% - 220px); /* Ajusta a largura para o restante da tela */
-    background: white;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-left: 220px; /* Espaço ao lado do nav */
+  padding: 20px;
+  max-width: calc(100% - 220px); /* Ajusta a largura para o restante da tela */
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Sections */
 section {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 section h2 {
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 5px;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 5px;
 }
 
 /* Footer */
 footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #2c3e50;
-    color: white;
-    margin-botton: 0px;
+  text-align: center;
+  padding: 10px;
+  background-color: #2c3e50;
+  color: white;
+  margin-botton: 0px;
 }
 
 /* Responsividade para o header */
 @media (max-width: 768px) {
-    header h1 {
-        font-size: 1.8em; /* Reduz o tamanho da fonte em telas médias */
-    }
+  header h1 {
+    font-size: 1.8em; /* Reduz o tamanho da fonte em telas médias */
+  }
 
-    header p {
-        font-size: 0.9em; /* Ajusta o tamanho da descrição */
-    }
+  header p {
+    font-size: 0.9em; /* Ajusta o tamanho da descrição */
+  }
 }
 
 @media (max-width: 480px) {
-    header h1 {
-        font-size: 1.5em; /* Fonte menor para telas pequenas */
-    }
+  header h1 {
+    font-size: 1.5em; /* Fonte menor para telas pequenas */
+  }
 
-    header p {
-        font-size: 0.8em; /* Fonte menor para descrição */
-    }
+  header p {
+    font-size: 0.8em; /* Fonte menor para descrição */
+  }
 
-    header {
-        padding: 15px; /* Reduz o espaçamento geral */
-    }
+  header {
+    padding: 15px; /* Reduz o espaçamento geral */
+  }
 }
 
 /* Responsividade */
 @media (max-width: 768px) {
-    nav {
-        position: relative; /* Torna o menu relativo */
-        width: 100%; /* O menu ocupa toda a largura da tela */
-        height: auto; /* Ajusta a altura automaticamente */
-        margin-bottom: 10px; /* Espaço entre nav e main */
-    }
+  nav {
+    position: relative; /* Torna o menu relativo */
+    width: 100%; /* O menu ocupa toda a largura da tela */
+    height: auto; /* Ajusta a altura automaticamente */
+    margin-bottom: 10px; /* Espaço entre nav e main */
+  }
 
-    main {
-        margin-left: 0; /* Remove o deslocamento lateral */
-        max-width: 100%; /* Ocupa toda a largura disponível */
-    }
+  main {
+    margin-left: 0; /* Remove o deslocamento lateral */
+    max-width: 100%; /* Ocupa toda a largura disponível */
+  }
 }
 
 @media (max-width: 480px) {
-    nav h2 {
-        font-size: 16px;
-    }
+  nav h2 {
+    font-size: 16px;
+  }
 
-    nav a {
-        font-size: 14px;
-    }
+  nav a {
+    font-size: 14px;
+  }
 }
