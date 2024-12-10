@@ -1,49 +1,395 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentation Overview</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentation Overview</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <header>
-        <h1>Documentation Overview</h1>
-        <p>Your guide to understanding the system.</p>
-    </header>
-    <div class="container">
-        <nav>
-            <h2>Menu</h2>
-            <a href="#overview">Overview</a>
-            <a href="#features">Features</a>
-            <a href="#setup">Setup</a>
-        </nav>
-        <main>
-            <section id="overview">
-                <h2>Overview</h2>
-                <p>This documentation provides an introduction to the system's architecture, features, and usage. It serves as a starting point for new users and a reference for experienced developers.</p>
-            </section>
-            <section id="features">
-                <h2>Features</h2>
-                <ul>
-                    <li>Modular and scalable architecture</li>
-                    <li>Extensive API documentation</li>
-                    <li>Seamless integration with existing tools</li>
-                </ul>
-            </section>
-            <section id="setup">
-                <h2>Setup</h2>
-                <p>To get started, follow these steps:</p>
-                <ol>
-                    <li>Download the latest version from the official website.</li>
-                    <li>Install the required dependencies.</li>
-                    <li>Run the setup script to configure the system.</li>
-                </ol>
-            </section>
-        </main>
-    </div>
-    <footer>
-        <p>&copy; 2024 Your Company. All rights reserved.</p>
-    </footer>
+  <header>
+    <h1>Documentation Overview</h1>
+    <p>Your guide to understanding the system.</p>
+  </header>
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="#introduction">1. Introduction</a>
+          <ul>
+            <li><a href="#goal">1.1 Goal</a></li>
+            <li><a href="#scope">1.2 Scope</a></li>
+            <li><a href="#definitions">1.3 Definitions, Acronyms and Abbreviations</a></li>
+            <li><a href="#architecture-requirements">1.4 Architecture Requirements</a>
+              <ul>
+                <li><a href="#functional-requirements">1.4.1 Functional Requirements</a></li>
+                <li><a href="#non-functional-requirements">1.4.2 Non-Functional Requirements</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#architectural-representation">2. Architectural Representation</a>
+          <ul>
+            <li><a href="#management-requirements">2.1 Management Requirements</a></li>
+            <li><a href="#smart-city-solution">2.2 Smart City Solution and Composition of Smart City Solutions</a></li>
+            <li><a href="#functional-components">2.3 Functional Components</a></li>
+            <li><a href="#layers-of-archm">2.4 Layers of the ArchM</a></li>
+          </ul>
+        </li>
+        <li><a href="#device-layer">3. Device Layer</a>
+          <ul>
+            <li><a href="#gateway">3.1 Gateway</a></li>
+            <li><a href="#sensor">3.2 Sensor</a></li>
+            <li><a href="#actuator">3.3 Actuator</a></li>
+            <li><a href="#protocols-device-communication">3.4 Protocols for Device Communication</a></li>
+            <li><a href="#device-communication-archm">3.5 Device Communication in ArchM</a></li>
+          </ul>
+        </li>
+        <li><a href="#communication-layer">4. Communication Layer</a>
+          <ul>
+            <li><a href="#communication-module">4.1 Communication Module</a></li>
+            <li><a href="#action-module">4.2 Action Module</a></li>
+            <li><a href="#communication-standard">4.3 Communication Standard</a></li>
+          </ul>
+        </li>
+        <li><a href="#monitoring">5. Monitoring</a>
+          <ul>
+            <li><a href="#device-monitoring">5.1 Device Monitoring</a></li>
+            <li><a href="#data-processing">5.2 Data Processing</a></li>
+          </ul>
+        </li>
+        <li><a href="#maintenance">6. Maintenance</a>
+          <ul>
+            <li><a href="#hardware-software-maintenance">6.1 Hardware and Software Maintenance</a></li>
+            <li><a href="#device-control">6.2 Device Control</a></li>
+            <li><a href="#device-access">6.3 Device Access</a></li>
+          </ul>
+        </li>
+        <li><a href="#analysis">7. Analysis</a>
+          <ul>
+            <li><a href="#device-analysis-smart-solution">7.1 Device Analysis in Smart Solution</a></li>
+            <li><a href="#data-processing-analysis">7.2 Data Processing</a></li>
+            <li><a href="#view-generator">7.3 View Generator</a></li>
+            <li><a href="#device-analysis-smart-composition">7.4 Device Analysis in Smart Composition</a></li>
+            <li><a href="#information-aggregator">7.5 Information Aggregator</a></li>
+          </ul>
+        </li>
+        <li><a href="#fault-identification-layer">8. Fault Identification Layer</a>
+          <ul>
+            <li><a href="#fault-identification-smart-solution">8.1 Fault Identification in Devices within the Smart Solution</a></li>
+            <li><a href="#strategy-analyzer">8.2 Strategy Analyzer</a></li>
+            <li><a href="#scenario-generator">8.3 Scenario Generator</a></li>
+            <li><a href="#fault-identification-smart-composition">8.4 Fault Identification in Devices within the Smart Composition</a></li>
+          </ul>
+        </li>
+        <li><a href="#intervention-layer">9. Intervention Layer</a>
+          <ul>
+            <li><a href="#intervention-smart-solution">9.1 Intervention in Devices the Smart Solution</a></li>
+            <li><a href="#intervention-generator">9.2 Intervention Generator</a></li>
+            <li><a href="#intervention-analysis">9.3 Intervention Analysis</a></li>
+            <li><a href="#intervention-smart-composition">9.4 Intervention on Devices in the Smart Composition</a></li>
+            <li><a href="#maintenance-intervention">9.5 Maintenance by Intervention</a></li>
+          </ul>
+        </li>
+        <li><a href="#storage-layer">10. Storage Layer</a>
+          <ul>
+            <li><a href="#management-data-storage">10.1 Management Data Storage</a></li>
+            <li><a href="#management-data-recover">10.2 Management Data Recover</a></li>
+            <li><a href="#data-sharing">10.3 Data Sharing</a></li>
+            <li><a href="#storage-base-search">10.4 Storage Base Search</a></li>
+          </ul>
+        </li>
+        <li><a href="#references">References</a></li>
+      </ul>
+    </nav>
+    <main>
+      <section id="overview">
+        <h2>Overview</h2>
+        <p>This documentation provides an introduction to the system's architecture, features, and usage. It serves as a starting point for new users and a reference for experienced developers.</p>
+      </section>
+      <section id="features">
+        <h2>Features</h2>
+        <ul>
+          <li>Modular and scalable architecture</li>
+          <li>Extensive API documentation</li>
+          <li>Seamless integration with existing tools</li>
+        </ul>
+      </section>
+      <section id="setup">
+        <h2>Setup</h2>
+        <p>To get started, follow these steps:</p>
+        <ol>
+          <li>Download the latest version from the official website.</li>
+          <li>Install the required dependencies.</li>
+          <li>Run the setup script to configure the system.</li>
+        </ol>
+      </section>
+      <section id="introduction">
+        <h2>1. Introduction</h2>
+        <p>This documentation provides an introduction to the system's architecture, features, and usage. It serves as a starting point for new users and a reference for experienced developers.</p>
+      </section>
+
+      <section id="goal">
+        <h2>1.1 Goal</h2>
+        <p>Details about the goals of the system.</p>
+      </section>
+
+      <section id="scope">
+        <h2>1.2 Scope</h2>
+        <p>Defines the scope of the system and its functionalities.</p>
+      </section>
+
+      <section id="definitions">
+        <h2>1.3 Definitions, Acronyms and Abbreviations</h2>
+        <p>Explanation of terms, acronyms, and abbreviations used in this document.</p>
+      </section>
+
+      <section id="architecture-requirements">
+        <h2>1.4 Architecture Requirements</h2>
+        <p>Overview of the architecture requirements.</p>
+      </section>
+
+      <section id="functional-requirements">
+        <h2>1.4.1 Functional Requirements</h2>
+        <p>Details on the functional requirements of the architecture.</p>
+      </section>
+
+      <section id="non-functional-requirements">
+        <h2>1.4.2 Non-Functional Requirements</h2>
+        <p>Details on non-functional aspects like performance and security.</p>
+      </section>
+
+      <section id="architectural-representation">
+        <h2>2. Architectural Representation</h2>
+        <p>Description of the architecture representation used in the system.</p>
+      </section>
+
+      <section id="management-requirements">
+        <h2>2.1 Management Requirements</h2>
+        <p>Management requirements for the system architecture.</p>
+      </section>
+
+      <section id="smart-city-solution">
+        <h2>2.2 Smart City Solution and Composition of Smart City Solutions</h2>
+        <p>Explains the smart city solution and how it is composed.</p>
+      </section>
+
+      <section id="functional-components">
+        <h2>2.3 Functional Components</h2>
+        <p>Overview of the functional components within the system.</p>
+      </section>
+
+      <section id="layers-of-archm">
+        <h2>2.4 Layers of the ArchM</h2>
+        <p>Details about the layers in the ArchM architecture.</p>
+      </section>
+
+      <section id="device-layer">
+        <h2>3. Device Layer</h2>
+        <p>Description of the device layer and its components.</p>
+      </section>
+
+      <section id="gateway">
+        <h2>3.1 Gateway</h2>
+        <p>Explanation of the gateway component.</p>
+      </section>
+
+      <section id="sensor">
+        <h2>3.2 Sensor</h2>
+        <p>Details about the sensor component.</p>
+      </section>
+
+      <section id="actuator">
+        <h2>3.3 Actuator</h2>
+        <p>Explanation of the actuator component.</p>
+      </section>
+
+      <section id="protocols-device-communication">
+        <h2>3.4 Protocols for Device Communication</h2>
+        <p>Overview of the protocols used for device communication.</p>
+      </section>
+
+      <section id="device-communication-archm">
+        <h2>3.5 Device Communication in ArchM</h2>
+        <p>Details about how device communication is implemented in ArchM.</p>
+      </section>
+
+      <section id="communication-layer">
+        <h2>4. Communication Layer</h2>
+        <p>Details about the communication layer in the system.</p>
+      </section>
+
+      <section id="communication-module">
+        <h2>4.1 Communication Module</h2>
+        <p>Explanation of the communication module.</p>
+      </section>
+
+      <section id="action-module">
+        <h2>4.2 Action Module</h2>
+        <p>Description of the action module.</p>
+      </section>
+
+      <section id="communication-standard">
+        <h2>4.3 Communication Standard</h2>
+        <p>Details about the communication standards used in the system.</p>
+      </section>
+
+      <section id="monitoring">
+        <h2>5. Monitoring</h2>
+        <p>Overview of the monitoring processes and methods.</p>
+      </section>
+
+      <section id="device-monitoring">
+        <h2>5.1 Device Monitoring</h2>
+        <p>Details on how devices are monitored within the system.</p>
+      </section>
+
+      <section id="data-processing">
+        <h2>5.2 Data Processing</h2>
+        <p>Explanation of the data processing flow in the system.</p>
+      </section>
+
+      <section id="maintenance">
+        <h2>6. Maintenance</h2>
+        <p>Overview of the maintenance processes for the system.</p>
+      </section>
+
+      <section id="hardware-software-maintenance">
+        <h2>6.1 Hardware and Software Maintenance</h2>
+        <p>Details about the maintenance of both hardware and software components.</p>
+      </section>
+
+      <section id="device-control">
+        <h2>6.2 Device Control</h2>
+        <p>Explanation of how devices are controlled within the system.</p>
+      </section>
+
+      <section id="device-access">
+        <h2>6.3 Device Access</h2>
+        <p>Details on how device access is managed and secured.</p>
+      </section>
+
+      <section id="analysis">
+        <h2>7. Analysis</h2>
+        <p>Overview of the analysis conducted within the system.</p>
+      </section>
+
+      <section id="device-analysis-smart-solution">
+        <h2>7.1 Device Analysis in Smart Solution</h2>
+        <p>Details on device analysis in the smart solution context.</p>
+      </section>
+
+      <section id="data-processing-analysis">
+        <h2>7.2 Data Processing</h2>
+        <p>Details of data processing analysis and its methods.</p>
+      </section>
+
+      <section id="view-generator">
+        <h2>7.3 View Generator</h2>
+        <p>Overview of the view generator functionality in the system.</p>
+      </section>
+
+      <section id="device-analysis-smart-composition">
+        <h2>7.4 Device Analysis in Smart Composition</h2>
+        <p>Explanation of device analysis in the context of smart composition.</p>
+      </section>
+
+      <section id="information-aggregator">
+        <h2>7.5 Information Aggregator</h2>
+        <p>Details about the information aggregator in the system.</p>
+      </section>
+
+      <section id="fault-identification-layer">
+        <h2>8. Fault Identification Layer</h2>
+        <p>Overview of the fault identification layer in the architecture.</p>
+      </section>
+
+      <section id="fault-identification-smart-solution">
+        <h2>8.1 Fault Identification in Devices within the Smart Solution</h2>
+        <p>Explanation of fault identification in devices in the smart solution.</p>
+      </section>
+
+      <section id="strategy-analyzer">
+        <h2>8.2 Strategy Analyzer</h2>
+        <p>Details about the strategy analyzer component.</p>
+      </section>
+
+      <section id="scenario-generator">
+        <h2>8.3 Scenario Generator</h2>
+        <p>Overview of the scenario generator used for fault identification.</p>
+      </section>
+
+      <section id="fault-identification-smart-composition">
+        <h2>8.4 Fault Identification in Devices within the Smart Composition</h2>
+        <p>Details of fault identification in devices within the smart composition.</p>
+      </section>
+
+      <section id="intervention-layer">
+        <h2>9. Intervention Layer</h2>
+        <p>Overview of the intervention layer and its purpose.</p>
+      </section>
+
+      <section id="intervention-smart-solution">
+        <h2>9.1 Intervention in Devices the Smart Solution</h2>
+        <p>Details of intervention in devices within the smart solution.</p>
+      </section>
+
+      <section id="intervention-generator">
+        <h2>9.2 Intervention Generator</h2>
+        <p>Overview of the intervention generator and its functionality.</p>
+      </section>
+
+      <section id="intervention-analysis">
+        <h2>9.3 Intervention Analysis</h2>
+        <p>Explanation of intervention analysis in the system.</p>
+      </section>
+
+      <section id="intervention-smart-composition">
+        <h2>9.4 Intervention on Devices in the Smart Composition</h2>
+        <p>Details on intervention in devices within the smart composition.</p>
+      </section>
+
+      <section id="maintenance-intervention">
+        <h2>9.5 Maintenance by Intervention</h2>
+        <p>Details about maintenance by intervention processes.</p>
+      </section>
+
+      <section id="storage-layer">
+        <h2>10. Storage Layer</h2>
+        <p>Overview of the storage layer in the architecture.</p>
+      </section>
+
+      <section id="management-data-storage">
+        <h2>10.1 Management Data Storage</h2>
+        <p>Details about how data is stored and managed in the system.</p>
+      </section>
+
+      <section id="management-data-recover">
+        <h2>10.2 Management Data Recover</h2>
+        <p>Explanation of how data recovery is managed within the system.</p>
+      </section>
+
+      <section id="data-sharing">
+        <h2>10.3 Data Sharing</h2>
+        <p>Overview of the data sharing functionality in the system.</p>
+      </section>
+
+      <section id="storage-base-search">
+        <h2>10.4 Storage Base Search</h2>
+        <p>Details of the storage base search and how it is implemented.</p>
+      </section>
+
+      <section id="references">
+        <h2>References</h2>
+        <p>List of references used in the documentation.</p>
+      </section>
+
+    </main>
+  </div>
+  <footer>
+    <p>&copy; 2024 Your Company. All rights reserved.</p>
+  </footer>
 </body>
+
 </html>
