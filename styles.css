@@ -44,7 +44,7 @@ header p {
 
 /* Navigation menu */
 nav {
-  width: 350px;
+  width: 300px; /* Aumenta a largura do nav */
   background-color: #34495e;
   color: white;
   padding: 20px;
@@ -91,9 +91,9 @@ nav li {
 
 /* Main content */
 main {
-  margin-left: 220px; /* Espaço ao lado do nav */
+  margin-left: 320px; /* Ajusta o espaço ao lado do nav */
   padding: 20px;
-  max-width: calc(100% - 220px); /* Ajusta a largura para o restante da tela */
+  max-width: calc(100% - 320px); /* Ajusta a largura para o restante da tela */
   background: white;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
