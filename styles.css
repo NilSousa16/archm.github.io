@@ -109,6 +109,35 @@ section h2 {
   padding-bottom: 5px;
 }
 
+/* Table */
+table {
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 1000px;
+}
+table,
+th,
+td {
+  border: 1px solid black;
+}
+th,
+td {
+  padding: 10px;
+  text-align: left;
+}
+
+/* Image */
+
+.image-container {
+  text-align: center;
+}
+
+.image-container img {
+  max-width: 50%;
+  height: auto;
+}
+
 /* Footer */
 footer {
   text-align: center;
