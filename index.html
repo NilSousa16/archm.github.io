@@ -33,9 +33,10 @@
         <li><a href="#architectural-representation">2. Architectural Representation</a>
           <ul>
             <li><a href="#management-requirements">2.1 Management Requirements</a></li>
-            <li><a href="#smart-city-solution">2.2 Smart City Solution and Composition of Smart City Solutions</a></li>
-            <li><a href="#functional-components">2.3 Functional Components</a></li>
-            <li><a href="#layers-of-archm">2.4 Layers of the ArchM</a></li>
+            <li><a href="#architectural-entities">2.2 Architectural Entities</a></li>
+            <li><a href="#smart-city-solution">2.3 Smart City Solution and Composition of Smart City Solutions</a></li>
+            <li><a href="#functional-components">2.4 Functional Components</a></li>
+            <li><a href="#layers-of-archm">2.5 Layers of the ArchM</a></li>
           </ul>
         </li>
         <li><a href="#device-layer">3. Device Layer</a>
@@ -128,61 +129,554 @@
       </section>
       <section id="introduction">
         <h2>1. Introduction</h2>
-        <p>This documentation provides an introduction to the system's architecture, features, and usage. It serves as a starting point for new users and a reference for experienced developers.</p>
+        <p><strong>Smart Cities</strong> can be defined as urban centers that utilize digital <strong>data-driven technologies</strong> to optimize public services and increase <strong>resource use efficiency</strong>. A <strong>Smart City</strong> is composed of six main components: <strong>smart governance</strong>, <strong>smart economy</strong>, <strong>smart citizens</strong>, <strong>smart mobility</strong>, <strong>smart environment</strong>, and <strong>smart quality of life</strong>.</p>
+
+        <p>As <strong>Internet of Things (IoT)</strong> technologies advance, <strong>Smart Cities</strong> benefit from these innovations by providing more <strong>efficient services</strong> and optimizing <strong>resource usage</strong>. Generally, <strong>IoT</strong> is oriented towards <strong>technological infrastructure</strong>, while <strong>Smart Cities</strong> focus on meeting users' needs. However, both share the goal of improving <strong>urban services</strong>.</p>
+
+        <p>The implementation of <strong>IoT</strong> in <strong>Smart Cities</strong>, as in other contexts, is associated with the use of an extensive <strong>hardware infrastructure</strong> composed of <strong>heterogeneous devices</strong>. This diversity is necessary for monitoring various environments, such as <strong>parks</strong>, <strong>parking lots</strong>, <strong>buildings</strong>, <strong>traffic</strong>, and <strong>atmospheric conditions</strong>. For example, in a park, specific <strong>sensors</strong> may be employed to monitor <strong>humidity</strong>, <strong>temperature</strong>, <strong>gases in the air</strong>, the <strong>presence of people</strong>, and the control of <strong>public lighting</strong>. This scenario highlights the significant number of devices required in <strong>IoT infrastructures</strong> for <strong>Smart City solutions</strong>.</p>
+
+        <p>Another relevant aspect is the <strong>heterogeneity</strong> of <strong>IoT infrastructures</strong>, which involves a wide variety of <strong>devices</strong> and <strong>communication protocols</strong>. Each device may have different <strong>processing capabilities</strong> and adopt varying <strong>communication standards</strong>, resulting in a lack of <strong>standardization</strong> across solutions. Combined with the large volume of devices, the <strong>management</strong>, <strong>monitoring</strong>, and <strong>maintenance</strong> of the availability and efficiency of these infrastructures become a significant challenge.</p>
+
+        <p>In light of this, to ensure the availability and proper functioning of <strong>devices</strong> and the <strong>IoT infrastructure</strong>, remote <strong>monitoring</strong> and <strong>control</strong> of these devices are essential without overburdening <strong>operational resources</strong>. This enables the continuous operation of various <strong>services</strong> offered by <strong>Smart Cities</strong> and ensures the high availability of the <strong>IoT infrastructure</strong>.</p>
+
+        <p>To achieve this goal, the development of <strong>management mechanisms</strong> capable of handling the specific characteristics of <strong>IoT infrastructures</strong> in the context of <strong>Smart Cities</strong> becomes necessary. This development must take into account the particularities and complexities of these environments. The creation of a dedicated <strong>architecture</strong> for <strong>device management</strong> can significantly contribute to ensuring the proper functioning and <strong>maintenance</strong> of these infrastructures.</p>
+
       </section>
 
       <section id="goal">
         <h2>1.1 Goal</h2>
-        <p>Details about the goals of the system.</p>
+        <p>This document aims to provide a comprehensive overview of the proposed architecture for managing IoT infrastructures in the context of Smart Cities, termed <strong>Integrated Architecture for IoT Device Management in Smart Cities (ArchM)</strong>.
+        </p>
+
       </section>
 
       <section id="scope">
         <h2>1.2 Scope</h2>
-        <p>Defines the scope of the system and its functionalities.</p>
+        <p>The architecture described in this document is applicable to the management of <b>IoT devices</b> across various technological solutions aimed at <b>Smart Cities</b>. The utilization of its principles and methods will contribute to the <b>organization</b> and <b>standardization</b> of IoT device management processes in different scenarios. Furthermore, the adoption of <b>ArchM</b> will enable managerial <b>integration</b> and <b>collaboration</b> among multiple solutions, fostering greater <b>efficiency</b> and <b>interoperability</b>.</p>
       </section>
 
       <section id="definitions">
         <h2>1.3 Definitions, Acronyms and Abbreviations</h2>
-        <p>Explanation of terms, acronyms, and abbreviations used in this document.</p>
+        <p>This section presents some of the most common terms and their meanings, which are used in the architecture description.
+        </p>
+        <ul>
+          <li><strong>Integrated Architecture for IoT Device Management in Smart Cities (ArchM)</strong> - Architecture for IoT Device Management in the Context of Smart Cities.</li>
+          <li><strong>Smart City Solution</strong>, or simply <strong>Smart Solution (SS)</strong> - IoT solution for a specific area or need within a city.</li>
+          <li><strong>Composition of Solutions Smart Cities</strong> or <strong>Smart Composition (SC)</strong> - Refers to a set of Smart Solutions (SS) managed collectively as if they were a single Smart Solution.</li>
+          <li><strong>IoT Environment</strong> - Corresponds to an IoT solution deployed in a Smart City.</li>
+          <li><strong>Management System (MS)</strong> - Software responsible for managing Smart Solutions and Smart Compositions.</li>
+          <li><strong>Entity</strong> - Anything within a Smart Solution or Smart Composition that can be managed.</li>
+        </ul>
+
+        <p>Other terms and definitions relevant to the development of the architecture can be accessed via the link below.</p>
+
+        <ul>
+          <li><a href="https://docs.google.com/document/d/1FYA6EgDaxulQ_Imz72AHeSQvzOrn6Pk8vEb1gaff8-M/edit?tab=t.0" target="_blank">1.0.0 - Definitions according to ISO/IEC 30141:2018</a></li>
+        </ul>
+
       </section>
 
       <section id="architecture-requirements">
         <h2>1.4 Architecture Requirements</h2>
-        <p>Overview of the architecture requirements.</p>
+        <p><strong>The Integrated Architecture for IoT Device Management in Smart Cities</strong> is designed for managing IoT infrastructures in solutions implemented in Smart Cities. This architecture provides a framework for the development and enhancement of IoT device management systems. Its development began with a requirements gathering process that identified the needs to be addressed by the architecture.</p>
+
+        <p>To ensure a clear and consistent view of the architecture, high-level requirements are specified according to the following elements:</p>
+
+        <ul>
+          <li><strong>Identifier</strong>: represents the unique ID and title of the requirement;</li>
+          <li><strong>Name</strong>: short title of the requirement;</li>
+          <li><strong>Description</strong>: provides a summary of the functionality;</li>
+          <li><strong>Impact</strong>: discusses the relevance of the requirement to the architecture;</li>
+        </ul>
+
       </section>
 
       <section id="functional-requirements">
         <h2>1.4.1 Functional Requirements</h2>
-        <p>Details on the functional requirements of the architecture.</p>
+        <p>Functional requirements are organized into high-level requirements, followed by functionalities specified in greater detail. The table below presents, in a simplified manner, the identified functional and non-functional requirements.
+        </p>
+
+        <table>
+          <tr>
+            <th>ID</th>
+            <td>RF-001</td>
+          </tr>
+          <tr>
+            <th>Name</th>
+            <td><strong>Device monitoring in the infrastructure of an IoT solution for smart cities</strong></td>
+          </tr>
+          <tr>
+            <th>Description</th>
+            <td>The manager must monitor all devices present in the infrastructure of an IoT solution.</td>
+          </tr>
+          <tr>
+            <th>Impact</th>
+            <td>Allows administrators and management software to view the status of the devices that comprise the infrastructure of an IoT solution.</td>
+          </tr>
+        </table>
+
+        <table>
+          <tr>
+            <th>ID</th>
+            <td>RF-002</td>
+          </tr>
+          <tr>
+            <th>Name</th>
+            <td><strong>Management data storage</strong></td>
+          </tr>
+          <tr>
+            <th>Description</th>
+            <td>Enable the persistence and retrieval of management data in available databases, including cloud, local servers, and devices.</td>
+          </tr>
+          <tr>
+            <th>Impact</th>
+            <td>Allows administrators and management software to query management data to identify potential failures and opportunities for improvement.</td>
+          </tr>
+        </table>
+
+        <table>
+          <tr>
+            <td><strong>ID</strong></td>
+            <td>RF-003</td>
+          </tr>
+          <tr>
+            <td><strong>Name</strong></td>
+            <td>Management data sharing</td>
+          </tr>
+          <tr>
+            <td><strong>Description</strong></td>
+            <td>
+              The manager must be able to share management data across different infrastructures, enabling more comprehensive managerial analysis and evaluation.
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Impact</strong></td>
+            <td>
+              Provides the capability for comprehensive management, where infrastructures from different solutions can interact with the aim of optimizing management.
+            </td>
+          </tr>
+        </table>
+
+        <table>
+          <tr>
+            <th><strong>ID</strong></th>
+            <td>RF-004</td>
+          </tr>
+          <tr>
+            <th><strong>Name</strong></th>
+            <td>Device control</td>
+          </tr>
+          <tr>
+            <th><strong>Description</strong></th>
+            <td>
+              The manager must provide restricted control over certain functionalities of all devices in the infrastructure remotely, aiming for the configuration, maintenance, and optimization of existing resources.
+            </td>
+          </tr>
+          <tr>
+            <th><strong>Impact</strong></th>
+            <td>
+              Enables flexibility in manipulating devices for managerial activities, as well as assisting in reducing the need for on-site device support.
+            </td>
+          </tr>
+        </table>
+
+        <table>
+          <tr>
+            <th><strong>ID</strong></th>
+            <td>RF-005</td>
+          </tr>
+          <tr>
+            <th><strong>Name</strong></th>
+            <td>Analysis of devices from one or more IoT solution infrastructures for smart cities</td>
+          </tr>
+          <tr>
+            <th><strong>Description</strong></th>
+            <td>
+              The manager must allow the use of historical management data from devices to generate analyses on the efficiency of the infrastructure of one or more solutions.
+            </td>
+          </tr>
+          <tr>
+            <th><strong>Impact</strong></th>
+            <td>
+              Based on the results, this enables the identification of the infrastructure's effectiveness and the formulation of strategies for improving the overall performance of the solutions.
+            </td>
+          </tr>
+        </table>
+
+        <table>
+          <tr>
+            <th><strong>ID</strong></th>
+            <td>RF-006</td>
+          </tr>
+          <tr>
+            <th><strong>Name</strong></th>
+            <td>Identification of problems in devices in the infrastructure of one or more IoT solutions for smart cities</td>
+          </tr>
+          <tr>
+            <th><strong>Description</strong></th>
+            <td>
+              The manager must provide resources that enable the identification of issues in the infrastructure of one or more solutions, aiming to detect situations that may compromise the proper functioning of these solutions.
+            </td>
+          </tr>
+          <tr>
+            <th><strong>Impact</strong></th>
+            <td>
+              Enables increased availability of the solutions' infrastructure, as this requirement allows for the identification and correction of failures.
+            </td>
+          </tr>
+        </table>
+
+        <table>
+          <tr>
+            <th><strong>ID</strong></th>
+            <td>RF-007</td>
+          </tr>
+          <tr>
+            <th><strong>Name</strong></th>
+            <td><strong>Intervention in the infrastructure of IoT solutions for smart cities</strong></td>
+          </tr>
+          <tr>
+            <th><strong>Description</strong></th>
+            <td>
+              The manager must allow control over critical functions of the devices to correct any potential failures that may occur. This control should also enable access to functionalities that allow, for example, firmware updates for a device.
+            </td>
+          </tr>
+          <tr>
+            <th><strong>Impact</strong></th>
+            <td>
+              Enables increased availability of the solutions' infrastructure, as it allows for the implementation of measures to correct failures.
+            </td>
+          </tr>
+        </table>
+
+        <table>
+          <tr>
+            <th><strong>ID</strong></th>
+            <td>RF-008</td>
+          </tr>
+          <tr>
+            <th><strong>Name</strong></th>
+            <td><strong>Maintenance of devices in the infrastructure of one or more IoT solutions for smart cities</strong></td>
+          </tr>
+          <tr>
+            <th><strong>Description</strong></th>
+            <td>
+              The manager must provide resources for performing preventive or corrective maintenance on the infrastructure of the solution in which it is installed. This maintenance may include the reinstallation or updating of software, disabling devices for security reasons, among other actions.
+            </td>
+          </tr>
+          <tr>
+            <th><strong>Impact</strong></th>
+            <td>
+              Enables the maintenance of the infrastructure, directly influencing the availability and operational efficiency of the solution.
+            </td>
+          </tr>
+        </table>
+
+        <table>
+          <tr>
+            <th><strong>ID</strong></th>
+            <td>RF-009</td>
+          </tr>
+          <tr>
+            <th><strong>Name</strong></th>
+            <td><strong>Communication between entities</strong></td>
+          </tr>
+          <tr>
+            <th><strong>Description</strong></th>
+            <td>
+              The manager must allow communication between different devices across one or more infrastructures, aiming for the sharing of management information.
+            </td>
+          </tr>
+          <tr>
+            <th><strong>Impact</strong></th>
+            <td>
+              Communication between devices aids in the sharing of management data across the infrastructures of different solutions, enabling the formulation of strategies that optimize the availability of these solutions.
+            </td>
+          </tr>
+        </table>
+
       </section>
 
       <section id="non-functional-requirements">
         <h2>1.4.2 Non-Functional Requirements</h2>
-        <p>Details on non-functional aspects like performance and security.</p>
+        <p>The table below presents the specified non-functional requirements in a format comprising the fields: ID, Name, and Description.</p>
+
+        <table>
+          <tr>
+            <td><strong>ID</strong></td>
+            <td>RNF-001</td>
+          </tr>
+          <tr>
+            <td><strong>Name</strong></td>
+            <td>Manager impact</td>
+          </tr>
+          <tr>
+            <td><strong>Description</strong></td>
+            <td>
+              The manager must enable monitoring, control, maintenance, and fault correction within the infrastructures, ensuring the proper functioning of IoT solutions deployed in Smart Cities.
+            </td>
+          </tr>
+        </table>
+
+        <table>
+          <tr>
+            <td><strong>ID</strong></td>
+            <td>RNF-002</td>
+          </tr>
+          <tr>
+            <td><strong>Name</strong></td>
+            <td>Manager scalability</td>
+          </tr>
+          <tr>
+            <td><strong>Description</strong></td>
+            <td>
+              The manager must ensure that its functionalities are executed independently of the number of devices that comprise the infrastructure of an IoT solution deployed in a Smart City.
+            </td>
+          </tr>
+        </table>
+
+        <table>
+          <tr>
+            <td><strong>ID</strong></td>
+            <td>RNF-003</td>
+          </tr>
+          <tr>
+            <td><strong>Name</strong></td>
+            <td>Initialization of the functions of the MS (Management System)</td>
+          </tr>
+          <tr>
+            <td><strong>Description</strong></td>
+            <td>
+              The manager must ensure that each device in the infrastructure is managed from the moment of its initialization. In other words, the manager is responsible for autonomously initiating all management routines.
+            </td>
+          </tr>
+        </table>
+
+        <table>
+          <tr>
+            <td><strong>ID</strong></td>
+            <td>RNF-004</td>
+          </tr>
+          <tr>
+            <td><strong>Name</strong></td>
+            <td>Access to the MS (Management System)</td>
+          </tr>
+          <tr>
+            <td><strong>Description</strong></td>
+            <td>
+              The manager must ensure access to its functionalities for all individuals (administrators or systems) with granted access. Furthermore, it must ensure that each individual has access only to the set of functionalities corresponding to their user type.
+            </td>
+          </tr>
+        </table>
+
+        <table>
+          <tr>
+            <td><strong>ID</strong></td>
+            <td>RNF-005</td>
+          </tr>
+          <tr>
+            <td><strong>Name</strong></td>
+            <td>Use resources of MS (Management System)</td>
+          </tr>
+          <tr>
+            <td><strong>Description</strong></td>
+            <td>
+              The manager must be responsible for providing access to all management resources that enable the effective administration of the IoT infrastructure of a solution for Smart Cities.
+            </td>
+          </tr>
+        </table>
+
+        <table>
+          <tr>
+            <td><strong>ID</strong></td>
+            <td>RNF-006</td>
+          </tr>
+          <tr>
+            <td><strong>Name</strong></td>
+            <td>Interoperability</td>
+          </tr>
+          <tr>
+            <td><strong>Description</strong></td>
+            <td>
+              The manager must ensure the capability to communicate with various types of devices and communication protocols.
+            </td>
+          </tr>
+        </table>
+
+        <p>For more details on each presented requirement, refer to the description of the requirements needed for management, as outlined in document <a href="https://docs.google.com/document/d/1jkB7BfKCrgEtPrRdeMi9I42XPvUB-_iqxFUna0yoGFc/edit?tab=t.0"><strong>2.0 Requirements.</strong></a>
+        </p>
       </section>
 
       <section id="architectural-representation">
         <h2>2. Architectural Representation</h2>
-        <p>Description of the architecture representation used in the system.</p>
+        <p>The <strong>Integrated Architecture for IoT Device Management in Smart Cities (ArchM)</strong> is an architecture described in this document, aimed at enabling the development of platforms for managing devices that make up the infrastructure of Internet of Things (IoT) solutions in the context of <strong>Smart Cities.</strong>
+        </p>
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/NilSousa16/archm.github.io/main/Figures/Figura%201%20-%20Overview%20of%20Infrastructure%20in%20Smart%20Cities.png" alt="Descrição da imagem">
+          <p class="image-description"><strong>Figura 1 - Overview of Infrastructure in Smart Cities</strong></p>
+        </div>
+
+        <p>In <strong>Figure 1</strong>, it can be observed that a <strong>Smart City</strong> is composed of various distinct solutions, which often operate in isolation. Each of these solutions has its own characteristics, such as types and quantities of devices, communication protocols, running software, and data storage structures.</p>
+
+        In this context, <strong>ArchM</strong> organizes management into two parts: the <strong>Smart City Solution</strong>, or simply <strong>Smart Solution (SS)</strong>, and the <strong>Composition of Smart Cities Solutions</strong>, or <strong>Smart Composition (SC)</strong>. <strong>SS</strong> refers to a specific solution for a <strong>Smart City</strong>, such as traffic monitoring on a highway, managed in isolation from <strong>ArchM</strong> perspective. On the other hand, <strong>SC</strong> represents a set of <strong>SS</strong>, meaning a group of <strong>Smart City</strong> solutions that are managed as a single solution.
+
+        </p>
+
       </section>
 
       <section id="management-requirements">
         <h2>2.1 Management Requirements</h2>
-        <p>Management requirements for the system architecture.</p>
+        <p>
+          <strong>ArchM</strong> must meet certain management requirements, considered essential for the effective management of IoT infrastructures in <strong>Smart Cities</strong>. For this purpose, the <strong>ISO/IEC 30141:2018</strong> and <strong>ISO/IEC 20924:2018</strong> standards were used in defining these requirements. The requirements are as follows:
+        </p>
+
+        <ul>
+          <li>
+            <strong>Separation of Functional and Management Capabilities:</strong> All management resources must operate independently of functional resources.
+          </li>
+          <li>
+            <strong>Heterogeneity:</strong> Management must be prepared to handle devices and systems with diverse characteristics.
+          </li>
+          <li>
+            <strong>Highly Distributed Systems:</strong> Management must be capable of handling the high distribution of devices and systems that may exist.
+          </li>
+          <li>
+            <strong>Scalability:</strong> Management must be maintained even as the number of devices connected to IoT systems increases.
+          </li>
+          <li>
+            <strong>Resource Sharing:</strong> The manager must utilize resource sharing among devices and systems to ensure the efficient operation of the entire infrastructure.
+          </li>
+        </ul>
+
+      </section>
+
+      <section id="architectural-entities">
+        <h2>2.2 Architectural Entities</h2>
+        <p>
+          This section presents the entities that are part of the scope covered by <strong>ArchM</strong>. In this context, architectural entities refer to the components present in IoT solutions that may be part of the set of elements involved in management, either as managed elements or as managing elements.
+        </p>
+
+        <p>
+          These elements were defined based on the <strong>ISO/IEC 30141:2018</strong> standard, which presents a reference architecture for the Internet of Things. However, in the implementation of a manager utilizing <strong>ArchM</strong>, there may be changes in the relationships or usage of the entities. <strong>Figure 2</strong> presents the conceptual model of <strong>ISO/IEC 30141:2018</strong>, showing the relationships among the entities present in IoT solutions.
+        </p>
+
+        <p>
+          The colored classes represent the elements deemed relevant from the conceptual model of <strong>ISO/IEC 30141:2018</strong> for management in <strong>ArchM</strong>. In <strong>Figure 2</strong>, these elements are highlighted in distinct colors, allowing for clear visual identification. The meanings of each of these elements are presented below:
+        </p>
+
+        <ul>
+          <li><strong>Green:</strong> represents the physical entities that may be managed.</li>
+          <li><strong>Yellow:</strong> corresponds to the software used for management, always considering the separation between functional and management software.</li>
+          <li><strong>Blue:</strong> related to all forms of storage for management information.</li>
+          <li><strong>Orange:</strong> refers to the management platform based on ArchM that may exist within Smart Solutions.</li>
+        </ul>
+
+        <p>
+          The architectural elements defined for management in <strong>ArchM</strong> adhere to some of the guidelines established in <strong>ISO/IEC 30141:2018</strong>. These elements include:
+        </p>
+
+        <ul>
+          <li>
+            <strong>Gateway:</strong> responsible for connecting devices to the network or the internet, as well as abstracting the heterogeneity of the devices.
+          </li>
+          <li>
+            <strong>Device:</strong> a hardware component that may consist of sensors and/or actuators.
+          </li>
+          <li>
+            <strong>Sensor:</strong> a hardware component used to capture environmental information.
+          </li>
+          <li>
+            <strong>Actuator:</strong> a hardware component responsible for making modifications to the environment in which it is situated.
+          </li>
+          <li>
+            <strong>Services<sup>¹</sup>:</strong> a software component tasked with data capture, environmental interaction, and communication.
+          </li>
+        </ul>
+
+        <p class="footnote">
+          <strong>¹</strong> The minimum management is performed on the services (software) existing within an IoT infrastructure, as the primary focus is on the management of devices.
+        </p>
+
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/NilSousa16/archm.github.io/main/Figures/Figure%202%20-%20Conceptual%20Model%20of%20ISO_IEC%2030141%3A2018.png" style="max-width: 70%; display: block; margin: 0 auto;" alt="Descrição da imagem">
+          <p class="image-description"><strong>Figure 2 - Conceptual Model of ISO/IEC 30141:2018</strong></p>
+        </div>
+
       </section>
 
       <section id="smart-city-solution">
-        <h2>2.2 Smart City Solution and Composition of Smart City Solutions</h2>
-        <p>Explains the smart city solution and how it is composed.</p>
+        <h2>2.3 Smart City Solution and Composition of Smart City Solutions</h2>
+        <p>
+          <strong>The Smart City Solution</strong>, or <strong>Smart Solution (SS)</strong>, is an IoT solution developed to address a specific need of a <strong>Smart City</strong>, such as vehicle traffic solutions, smart parking, or smart buildings. Each <strong>Smart City Solution</strong> consists of the following entities: devices, gateways, sensors, actuators, services, and data storage.
+        </p>
+
+        <p>
+          <strong>The Smart Manager (SM)</strong> refers to any service used for managing the entities within a <strong>Smart City Solution</strong>, which forms part of the management platform based on <strong>ArchM</strong>. It is important to note that not all solutions in a Smart City have an SM, as shown in <strong>Figure 3</strong>.
+        </p>
+
+        <p>
+          <strong>The Composition of Smart City Solutions</strong>, or <strong>Smart Composition (SC)</strong>, is the combination of two or more <strong>SS</strong> in terms of management. This means that, despite the variety of <strong>SS</strong> in the management platform, there is a single group of elements that need to be managed. However, this is only feasible for <strong>SS</strong> that are already managed by an <strong>SM</strong>, as shown in <strong>Figure 3</strong>, which illustrates four <strong>SCs</strong>.
+        </p>
+
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/NilSousa16/archm.github.io/main/Figures/Figure%203%20-%20Organization%20of%20SS%20SC%20and%20SM.png" style="max-width: 90%; display: block; margin: 0 auto;" alt="Descrição da imagem">
+          <p class="image-description"><strong>Figure 3 - Organization of SS, SC, and SM</strong></p>
+        </div>
+
+        <p>
+          <strong>The Composition of Smart City Solutions</strong>, or <strong>Smart Composition (SC)</strong>, is the combination of two or more <strong>SS</strong> in terms of management. This means that, despite the variety of <strong>SS</strong> in the management platform, there is a single group of elements that need to be managed. However, this is only feasible for <strong>SS</strong> that are already managed by an <strong>SM</strong>, as shown in <strong>Figure 3</strong>, which illustrates four <strong>SCs</strong>.
+        </p>
+
       </section>
 
       <section id="functional-components">
-        <h2>2.3 Functional Components</h2>
-        <p>Overview of the functional components within the system.</p>
+        <h2>2.4 Functional Components</h2>
+        <p>
+          <strong>Figure 4</strong> presents a use case diagram that illustrates all the functionalities and relationships within the architecture, defined based on the identified functional and non-functional requirements. In this figure, groups of functionalities are highlighted by different colors. These groups are referred to as functional components and will form the layers of the <strong>ArchM</strong>, which will be presented in <strong>Section 2.4</strong>.
+        </p>
+
+        <p>
+          Next, a brief description of each functionality of the architecture illustrated in Figure 4 will be presented.
+        </p>
+
+        <ul>
+          <li><strong>UC-002 Device Registration:</strong> Responsible for registering devices for management.</li>
+          <li><strong>UC-005 Device Monitoring:</strong> Constantly monitors registered devices.</li>
+          <li><strong>UC-007 Data Storage Management:</strong> Provides and executes routines for storing management data.</li>
+          <li><strong>UC-008 Data Recovery Management:</strong> Provides and executes routines for recovering management data.</li>
+          <li><strong>UC-009 Access DB Resources:</strong> Allows third parties to access collected management data and other database resources.</li>
+          <li><strong>UC-010 Data Sharing in Smart City Solution:</strong> Enables data sharing between Smart City Solutions.</li>
+          <li><strong>UC-011 Resource Sharing in Smart City Solution:</strong> Allows resource sharing between Smart City Solutions.</li>
+          <li><strong>UC-014 Device Control:</strong> Provides routines that allow control of parameters of devices within Smart City Solutions.</li>
+          <li><strong>UC-015 Device Access:</strong> Grants access only to entities (users, systems, etc.) with the appropriate privileges.</li>
+          <li><strong>UC-017 Device Analysis in Smart City Solution:</strong> Responsible for building scenarios from monitoring data that reflect the status of devices in the Smart City Solution.</li>
+          <li><strong>UC-019 Device Analysis in Smart Composition:</strong> Constructs scenarios from monitoring data of various Smart City Solutions, reflecting the overall status of the devices that make up the Smart Composition.</li>
+          <li><strong>UC-021 Device Problem Identification in Smart City Solution:</strong> Identifies problems or abnormalities in devices within a Smart City Solution.</li>
+          <li><strong>UC-023 Device Problem Identification in Smart Composition:</strong> Identifies potential failures in the set of devices forming the Smart Composition based on device analysis data.</li>
+          <li><strong>UC-025 Device Intervention in the Smart City Solution:</strong> Manipulates devices within the Smart City Solution to prevent identified anomalies.</li>
+          <li><strong>UC-027 Intervention in Smart Composition Devices:</strong> Manipulates the set of devices that form the Smart Composition to prevent identified anomalies.</li>
+          <li><strong>UC-029 Device Maintenance:</strong> Allows changes (has more privileges than device control) that enable restoration and/or optimization of devices.</li>
+          <li><strong>UC-031 Communication Between MS (Management System):</strong> Enables communication between Smart City Solutions, Smart Composition, and other entities.</li>
+        </ul>
+        
+        <div class="image-container">
+         <img src="https://raw.githubusercontent.com/NilSousa16/archm.github.io/main/Figures/Figure%204%20-%20Functional%20Components.png" 
+     alt="Descrição da imagem" 
+     style="max-width: 90%; display: block; margin: 0 auto;">
+          <p class="image-description"><strong>Figure 4 - Functional Components</strong></p>
+        </div>
+        
+        <p>Some of the functionalities have been detailed in different use cases and sequence diagrams, which can be accessed through the following links:
+</p>
+        <ul>
+          <li><a href="https://drive.google.com/drive/folders/1E0DRxkLAK7VXFN6sfEdmQ7kpURrUlGcN?usp=sharing" target="_blank"><strong>Use Case Diagrams</strong></a></li>
+          <li><a href="https://drive.google.com/drive/folders/1to1ECBPZk_MoYnGQw-CWcQ3QrT6qzkLI?usp=sharing" target="_blank"><strong>Sequence Diagrams</strong></a></li>
+        </ul>
+
       </section>
 
       <section id="layers-of-archm">
-        <h2>2.4 Layers of the ArchM</h2>
+        <h2>2.5 Layers of the ArchM</h2>
         <p>Details about the layers in the ArchM architecture.</p>
       </section>
 
