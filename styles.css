@@ -8,6 +8,10 @@ a {
   box-sizing: border-box;
 }
 
+header h1, header p {
+  padding-left: 20%;
+}
+
 body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
