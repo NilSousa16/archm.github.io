@@ -1385,11 +1385,20 @@
 
   <script>
     const menuToggle = document.getElementById('menuToggle');
-    const nav = document.querySelector('nav');
+const nav = document.querySelector('nav');
+const menuItems = nav.querySelectorAll('a');
 
-    menuToggle.addEventListener('click', () => {
-      nav.classList.toggle('open');
-    });
+menuToggle.addEventListener('click', () => {
+  nav.classList.toggle('open');
+});
+
+// Fechar o menu ao clicar em um item
+menuItems.forEach(item => {
+  item.addEventListener('click', () => {
+    nav.classList.remove('open');
+  });
+});
+
   </script>
 </body>
 
