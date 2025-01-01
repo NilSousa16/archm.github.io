@@ -9,6 +9,24 @@
 </head>
 
 <body>
+  
+  <button id="scrollToTopBtn" title="Go to top">↑</button>
+
+    <script>
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        window.onscroll = function () {
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+        };
+
+        scrollToTopBtn.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    </script>
+  
   <header>
     <h1>Documentation Overview</h1>
     <p>Your guide to understanding the system.</p>
