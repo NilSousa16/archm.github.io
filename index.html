@@ -1216,11 +1216,17 @@
           The execution sequence of this module is presented in the diagram of <strong>Figure 31</strong>.
         </p>
 
-        FIGURE 30 .....
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/NilSousa16/archm.github.io/main/Figures/Figure%2030%20-%20Overview%20of%20the%20use%20of%20the%20strategy%20analyzer%20and%20scenario%20generator%20modules.png" alt="Descrição da imagem" style="max-width: 80%; display: block; margin: 0 auto;">
+          <p class="image-description"><strong>Figure 30 - Overview of the use of the strategy analyzer and scenario generator modules</strong></p>
+        </div>
 
         <p>First, a request is made by an entity to execute fault identification in the infrastructure. Next, the module will request a set of data from the analysis layer and the storage layer. With this information, the module will identify the potential issue occurring and relay this information to the Strategy Analyzer module, which will propose actions to correct the failure.</p>
 
-        FIGURE 31 ...
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/NilSousa16/archm.github.io/main/Figures/Figure%2031%20-%20Execution%20sequence%20of%20the%20device%20failure%20prediction%20module%20in%20the%20smart%20composition.png" alt="Descrição da imagem" style="max-width: 90%; display: block; margin: 0 auto;">
+          <p class="image-description"><strong>Figure 31 - Execution sequence of the device failure prediction module in the smart composition</strong></p>
+        </div>
 
       </section>
 
@@ -1233,7 +1239,10 @@
           The <strong>Intervention Layer</strong> consists of two main modules and three auxiliary modules. The main modules are: <strong>Intervention in Devices within the Smart Solution</strong> and <strong>Intervention in Devices within the Smart Composition</strong>. These modules are responsible for managing all the necessary steps to carry out the intervention. The auxiliary modules, which handle specific tasks, include: <strong>Intervention Generator</strong>, <strong>Intervention Analyzer</strong>, and <strong>Maintenance by Intervention</strong>.
         </p>
 
-        FIGURE 32 .....
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/NilSousa16/archm.github.io/main/Figures/Figure%2032%20-%20Intervention%20Layer.png" alt="Descrição da imagem" style="max-width: 60%; display: block; margin: 0 auto;">
+          <p class="image-description"><strong>Figure 32 - Intervention Layer</strong></p>
+        </div>
 
       </section>
 
@@ -1243,7 +1252,10 @@
           This module is responsible for implementing modifications to prevent and correct failures or low performance in the <strong>Smart Solution</strong> infrastructure. To achieve this, it utilizes the auxiliary modules <strong>Intervention Generator</strong> and <strong>Intervention Analyzer</strong>, in addition to interacting with components from the <strong>storage</strong>, <strong>fault identification</strong>, and <strong>maintenance layers</strong>. This interaction allows for data retrieval and access to the necessary devices, optimizing the intervention in the <strong>Smart Solution</strong>.
         </p>
 
-        FIGURE 33 ....
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/NilSousa16/archm.github.io/main/Figures/Figure%2033%20-%20Execution%20sequence%20of%20the%20intervention%20module%20for%20devices%20in%20the%20smart%20solution.png" alt="Descrição da imagem" style="max-width: 90%; display: block; margin: 0 auto;">
+          <p class="image-description"><strong>Figure 33 - Execution sequence of the intervention module for devices in the smart solution</strong></p>
+        </div>
 
         <p>
           <strong>Figure 33</strong> presents the sequence diagram of a possible execution of the <strong>Intervention module</strong>. It can be seen that the intervention request is made by the <strong>Fault Identification layer</strong>. The <strong>Intervention module</strong> then retrieves data from the <strong>Fault Identification layer</strong>, potentially requesting additional data from the <strong>storage layer</strong>, depending on the implementation and the sufficiency of the existing information.
@@ -1263,7 +1275,10 @@
           <strong>Figure 34</strong> provides an overview of the execution of the <strong>Intervention Generator module</strong>. It shows how the data obtained from the <strong>Fault Identification layer</strong> is used by the <strong>Intervention Generator</strong>, which then produces the best possible configurations based on the specific characteristics of the infrastructure. Finally, this information is sent to the <strong>Intervention Analysis module</strong>.
         </p>
 
-        FIGURE 34 ....
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/NilSousa16/archm.github.io/main/Figures/Figure%2034%20-%20Overview%20of%20the%20intervention%20generator%20and%20intervention%20analysis%20modules.png" alt="Descrição da imagem" style="max-width: 70%; display: block; margin: 0 auto;">
+          <p class="image-description"><strong>Figure 34 - Overview of the intervention generator and intervention analysis modules</strong></p>
+        </div>
 
       </section>
 
@@ -1273,7 +1288,10 @@
           The <strong>Intervention Analysis Module</strong> is responsible for selecting the best configuration for the <strong>Smart Solution</strong> and/or <strong>Smart Composition</strong>. To achieve this, it must take into account the capacity for changes that can be made, as well as the permissions for the possible modifications. For instance, a device may be running a critical process that cannot be interrupted or transferred to another device.
         </p>
 
-        FIGURE 35 ....
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/NilSousa16/archm.github.io/main/Figures/Figure%2035%20-%20Execution%20sequence%20of%20the%20intervention%20module%20in%20devices%20within%20a%20smart%20composition.png" alt="Descrição da imagem" style="max-width: 90%; display: block; margin: 0 auto;">
+          <p class="image-description"><strong>Figure 35 - Execution sequence of the intervention module in devices within a smart composition</strong></p>
+        </div>
 
         <p>In <strong>Figure 34</strong>, it is observed that the <strong>Intervention Analysis Module</strong> receives information about the possible configurations from the <strong>Intervention Generator Module</strong>. Then, it performs database checks to evaluate the permissions and privileges that allow for the implementation of the configuration. Based on this information, the <strong>Intervention Analysis Module</strong> selects the best possible configuration, considering the current state of the infrastructure.</p>
 
@@ -1299,7 +1317,10 @@
 
         <p><strong>Figure 36</strong> presents the components of the <strong>storage layer</strong> and their relationships. This layer consists of three modules: <strong>data storage management</strong>, <strong>data retrieval management</strong>, and <strong>data sharing</strong>. The <strong>Storage Base Search</strong> module is responsible for the logic of searching for data distributed across different databases. It can be implemented as a separate module or integrated into another module, depending on the chosen approach. It is important to emphasize that, in an implementation of the <strong>ArchM</strong>, some functionalities of these modules may be executed by existing solutions in storage services.</p>
 
-        FIGURE 36 ...
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/NilSousa16/archm.github.io/main/Figures/Figure%2036%20-%20Storage%20Layer.png" alt="Descrição da imagem" style="max-width: 50%; display: block; margin: 0 auto;">
+          <p class="image-description"><strong>Figure 36 - Storage Layer</strong></p>
+        </div>
 
       </section>
 
