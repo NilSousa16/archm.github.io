@@ -765,13 +765,13 @@
 
         <p>Therefore, it is necessary to utilize protocols that adapt to the characteristics of the devices and are highly reliable to ensure efficient communication. Traditional protocols, such as those used on the web, may not be suitable for IoT devices. Below, we present some protocols that can be utilized by IoT devices:</p>
 
-        <p><strong>Constrained Application Protocol (CoAP):</strong> Designed for constrained devices (with low energy, memory, and computing capabilities), such as sensor nodes, allowing the capture of values read by the devices. It utilizes the UDP protocol and supports multicast for IoT applications [1].</p>
+        <p><strong>Constrained Application Protocol (CoAP):</strong> Designed for constrained devices (with low energy, memory, and computing capabilities), such as sensor nodes, allowing the capture of values read by the devices. It utilizes the UDP protocol and supports multicast for IoT applications <a href="#ref1">[1]</a>.</p>
 
-        <p><strong>Message Queuing Telemetry Transport (MQTT):</strong> An open messaging protocol based on the publish/subscribe paradigm, used for lightweight communications. MQTT employs a client/server model, collecting data from sensors and sending it to a server (broker) [2].</p>
+        <p><strong>Message Queuing Telemetry Transport (MQTT):</strong> An open messaging protocol based on the publish/subscribe paradigm, used for lightweight communications. MQTT employs a client/server model, collecting data from sensors and sending it to a server (broker) <a href="#ref2">[2]</a>.</p>
 
-        <p><strong>Advanced Message Queuing Protocol (AMQP):</strong> An application layer protocol used to transfer information between applications or organizations. AMQP transmits data as a byte stream and supports reliability, flow control, authentication, among others [3].</p>
+        <p><strong>Advanced Message Queuing Protocol (AMQP):</strong> An application layer protocol used to transfer information between applications or organizations. AMQP transmits data as a byte stream and supports reliability, flow control, authentication, among others <a href="#ref3">[3]</a>.</p>
 
-        <p><strong>The Accessible Thing Universe - TATU:</strong> A protocol that extends MQTT, standardizing messages for communication between devices and gateways [4].</p>
+        <p><strong>The Accessible Thing Universe - TATU:</strong> A protocol that extends MQTT, standardizing messages for communication between devices and gateways <a href="#ref4">[4]</a>.</p>
 
         <div class="image-container">
           <img src="https://raw.githubusercontent.com/NilSousa16/archm.github.io/main/Figures/Figure%207%20-%20Device%20Layer%20and%20Communication.png" alt="Descrição da imagem" style="max-width: 60%; display: block; margin: 0 auto;">
@@ -943,152 +943,398 @@
 
       <section id="monitoring">
         <h2>5. Monitoring</h2>
-        <p>Overview of the monitoring processes and methods.</p>
+        <p>The monitoring layer, shown in <strong>Figure 17</strong>, is responsible for handling the management data of a <strong>Smart Solution</strong> coming from the communication layer. Two modules were defined for this purpose: device monitoring and data processing. The functionality of each module in this layer is briefly described below.
+        </p>
+
+        <ul>
+          <li><strong>Device Monitoring:</strong> involves capturing the management data of all hardware and software assets in a <strong>Smart Solution</strong>, allowing for periodic verification of activity across the infrastructure.</li>
+          <li><strong>Data Processing:</strong> is responsible for performing the necessary conversions to ensure that the data is stored optimally, enabling its use by other components.</li>
+        </ul>
+
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/NilSousa16/archm.github.io/main/Figures/Figure%2017%20-%20Monitoring%20Layer.png" alt="Descrição da imagem" style="max-width: 60%; display: block; margin: 0 auto;">
+          <p class="image-description"><strong>Figure 17 - Monitoring Layer
+            </strong></p>
+        </div>
       </section>
 
       <section id="device-monitoring">
         <h2>5.1 Device Monitoring</h2>
-        <p>Details on how devices are monitored within the system.</p>
+        <p>The device monitoring module is responsible for collecting management data from the devices of a given <strong>Smart Solution</strong>. However, this data can be categorized based on the type of information it represents. In <strong>ArchM</strong>, the data is classified into hardware data and software data.</p>
+
+        <p>Hardware monitoring deals exclusively with information related to the hardware of each device. However, this activity is not limited to monitoring and action devices used in the <strong>Smart Solution</strong> but also includes the gateways that connect these devices to the internet. In <strong>ArchM</strong>, the following basic data is considered essential for device monitoring:</p>
+
+        <ul>
+          <li><strong>Gateway:</strong> id, name, manufacturer, serial number, model, power supply, battery level, total memory, free memory, total processing capacity, free processing capacity, storage capacity, MAC address, IP address, connection type, and operating system.</li>
+          <li><strong>Sensing Devices:</strong> id, name, manufacturer, serial number, model, power supply, battery level, version, sensor type, unit of measurement, and measurement interval.</li>
+          <li><strong>Actuating Devices:</strong> id, name, manufacturer, serial number, model, power supply, battery level, type of actuation, and actuation method.</li>
+        </ul>
+
+        <p>It is worth noting that the gateway, being a more complex device, provides information such as the operating system, processing capacity, storage, and other details. Sensing devices, on the other hand, include the measurement interval attribute, which indicates the frequency of data transmission. Actuating devices have the actuation method attribute, which defines the type of modification they perform.</p>
+
+        <p>Software monitoring is responsible for managing information related to the software present on gateways, allowing the monitoring of the type, version, and function of each software. The basic data regarding software management in a Smart Solution includes: developer, version, software type, and execution location. This category encompasses both the firmware of the devices and the software installed on gateways. The management data presented here are not intended to limit what should be monitored, but rather to provide guidance, allowing for modifications according to specific needs.</p>
+
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/NilSousa16/archm.github.io/main/Figures/Figure%2018%20-%20Management%20data%20transmission.png" alt="Descrição da imagem" style="max-width: 60%; display: block; margin: 0 auto;">
+          <p class="image-description"><strong>Figure 18 - Management data transmission
+            </strong></p>
+        </div>
+
+        <p>The monitoring of this information is simplified in <strong>Figure 18</strong> through a sequence diagram illustrating the transmission and processing of device management data. Initially, the device sends its management information to the communication layer, which, as described earlier, performs the conversion and/or filtering of the message, if necessary. Subsequently, the data is sent to the monitoring layer. In this layer, the data is redirected to the appropriate module, either hardware or software, where it will be processed for storage purposes. Additionally, the data captured by the monitoring layer can be requested before being stored, for instance, for applications requiring real-time processing.
+        </p>
+
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/NilSousa16/archm.github.io/main/Figures/Figure%2019%20-%20Data%20Processing.png" alt="Descrição da imagem" style="max-width: 60%; display: block; margin: 0 auto;">
+          <p class="image-description"><strong>Figure 19 - Data Processing
+            </strong></p>
+        </div>
+
       </section>
 
       <section id="data-processing">
         <h2>5.2 Data Processing</h2>
-        <p>Explanation of the data processing flow in the system.</p>
+        <p>In <strong>Figure 17</strong>, there is a dedicated module for data processing. This module is responsible for making the necessary modifications to the received monitoring data to optimize both processing and storage.
+        </p>
+
+        <p>This module can execute routines such as filtering management data, altering the format of the received data, aggregating information, and adding metadata. Its significance lies in the ability to adapt management data from different sources and varied standards. The data processing should be tailored to the system's needs, and this module may be omitted or incorporated into other modules as the context requires.</p>
+
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/NilSousa16/archm.github.io/main/Figures/Figure%2020%20-%20Example%20of%20Data%20Conversion.png" alt="Descrição da imagem" style="max-width: 60%; display: block; margin: 0 auto;">
+          <p class="image-description"><strong>Figure 20 - Example of Data Conversion</strong></p>
+        </div>
+
+        <p>
+
+        <p><strong>Figure 19</strong> illustrates a diagram of a generic routine for data processing. It shows that the data received by the monitoring module is forwarded to the processing module, which applies the necessary modifications to optimize storage. Initially, a filtering of the data is performed to ensure that only relevant information for monitoring the Smart Solution is retained. Subsequently, the data can undergo two types of conversion: the first aimed at local storage and the second for remote storage.</p>
+
+        <p><strong>Figure 20</strong> presents an example of data processing. In the first step, the management data received by the management module is forwarded for processing. It can be observed that there is a set of data from a specific device, collected at different times.</p>
+
+        <p>The data received by the processing module is processed and then aggregated, divided, and used to construct different messages. In steps three and four, the data is stored in two distinct databases, each with the appropriate format for its respective use.</p>
       </section>
 
       <section id="maintenance">
         <h2>6. Maintenance</h2>
-        <p>Overview of the maintenance processes for the system.</p>
+        <p>The maintenance layer is responsible for performing actions on the devices of a <strong>Smart Solution</strong>, which can be classified as preventive or corrective. Preventive maintenance involves making modifications to a device or a group of devices to ensure the continuity of the solution's operation. On the other hand, corrective maintenance aims to address issues that are compromising the full functionality of the <strong>Smart Solution</strong>.
+        </p>
+
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/NilSousa16/archm.github.io/main/Figures/Figure%2021%20-%20Maintenance%20Layer.png" alt="Descrição da imagem" style="max-width: 50%; display: block; margin: 0 auto;">
+          <p class="image-description"><strong>Figure 21 - Maintenance Layer</strong></p>
+        </div>
+
+        <p>This layer defines the necessary routines to perform corrections or maintenance on the devices and software. Routines such as rebooting, modifying software configurations, locking devices, and running simulations must be clearly defined for each type of device, considering their distinct characteristics and resources.</p>
+
+        <p>In <strong>Figure 21</strong>, it can be seen that the maintenance layer is related to the storage component. This is due to the need to access the characteristics and configurations of the devices being maintained. Additionally, the maintenance layer connects to the communication layer and the devices because of the requirement to transfer configuration and modification commands to the devices integrated into the <strong>Smart Solution</strong>.</p>
+
+        <p>The maintenance layer, as illustrated in <strong>Figure 21</strong>, consists of three fundamental modules:</p>
+
+        <ol>
+          <li><strong>Hardware and Software Maintenance:</strong> Responsible for defining the basic operations that can be performed on the hardware and/or software assets within a <strong>Smart Solution</strong>.</li>
+          <li><strong>Device Control:</strong> Aims to manage the manipulation routines that can be executed on each device for maintenance purposes.</li>
+          <li><strong>Device Access:</strong> Deals with the access protocols for the devices available in a <strong>Smart Solution</strong>.</li>
+        </ol>
+
       </section>
 
       <section id="hardware-software-maintenance">
         <h2>6.1 Hardware and Software Maintenance</h2>
-        <p>Details about the maintenance of both hardware and software components.</p>
+        <p>This module is responsible for managing the operations that can be performed on the assets of a <strong>Smart Solution</strong>, defining which actions are feasible for each asset to be maintained.</p>
+
+        <p>As illustrated in <strong>Figure 21</strong>, the hardware and software maintenance module is interconnected with the device access module and the storage layer. By accessing the management data, this module identifies the operations that can be executed on the asset or the <strong>Smart Solution</strong> in question.</p>
+
+        <p><strong>Figure 22</strong> presents the sequence diagram of the hardware and software maintenance module. In the first moment, there is a request from an entity to perform a maintenance action, which can originate from a higher layer or an external software. Next, the hardware and software maintenance module is triggered to execute the requested task on the device. Before proceeding, the module checks the storage layer to see which properties are available for modification on the devices and software. After this verification, access to the device is requested. The hardware and software maintenance module then sends the request to the device control, which, in turn, forwards the request to the device. Finally, upon receiving a response, it is sent back to the entity that originated the maintenance request.</p>
+
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/NilSousa16/archm.github.io/main/Figures/Figure%2022%20-%20Sequence%20diagram%20of%20the%20maintenance%20layer.png" alt="Descrição da imagem" style="max-width: 60%; display: block; margin: 0 auto;">
+          <p class="image-description"><strong>Figure 22 - Sequence diagram of the maintenance layer</strong></p>
+        </div>
+
       </section>
 
       <section id="device-control">
         <h2>6.2 Device Control</h2>
-        <p>Explanation of how devices are controlled within the system.</p>
+        <p>The Device Control module is responsible for managing the actions performed by each device in <strong>Smart Solutions</strong> during the maintenance process. Through this module, the maintenance layer sends commands to make changes to existing devices. In this context, the requested command may be converted into a more specific format that is understood by the device.</p>
+
+        <p><strong>Figure 22</strong> illustrates how the Device Control module operates when executing commands on a device. It shows that the control module receives a request and forwards it to the device where the action is to be performed. The module then waits and returns a response after the command has been executed.
+        </p>
       </section>
 
       <section id="device-access">
         <h2>6.3 Device Access</h2>
-        <p>Details on how device access is managed and secured.</p>
+
+        <p>This module is responsible for verifying connection permissions and access to the requested functionalities. It is important to emphasize that this module focuses exclusively on access control within the proposed architecture and does not cover all security routines that may be implemented.</p>
       </section>
 
       <section id="analysis">
         <h2>7. Analysis</h2>
-        <p>Overview of the analysis conducted within the system.</p>
+        <p>The analysis layer encompasses a set of functionalities responsible for providing an overview of a <strong>Smart Solution</strong>. This layer processes management data to monitor a set of assets within a <strong>Smart Solution</strong> or a <strong>Smart Composition</strong>, thereby presenting the functional status of the infrastructure. The analysis layer uses various modules, which are shown in <strong>Figure 23</strong>.</p>
+
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/NilSousa16/archm.github.io/main/Figures/Figure%2023%20-%20Analysis%20Layer.png" alt="Descrição da imagem" style="max-width: 60%; display: block; margin: 0 auto;">
+          <p class="image-description"><strong>Figure 23 - Analysis Layer</strong></p>
+        </div>
+
       </section>
 
       <section id="device-analysis-smart-solution">
         <h2>7.1 Device Analysis in Smart Solution</h2>
-        <p>Details on device analysis in the smart solution context.</p>
+        <p>The Device Analysis module in a <strong>Smart Solution</strong> is responsible for generating an overview of the managed device infrastructure. To achieve this, it leverages the data retrieval module from the storage component, which allows access to the necessary data to assess the current state of the infrastructure. The Device Analysis module also utilizes two other modules: the Data Processing module and the View Generator. <strong>Figure 24</strong> illustrates a possible execution sequence of the Device Analysis module in a <strong>Smart Solution</strong>.</p>
+
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/NilSousa16/archm.github.io/main/Figures/Figure%2024%20-%20Sequence%20diagram%20highlighting%20the%20device%20analysis%20module%20in%20the%20Smart%20Solution.png" alt="Descrição da imagem" style="max-width: 60%; display: block; margin: 0 auto;">
+          <p class="image-description"><strong>Figure 24 - Sequence diagram highlighting the device analysis module in the Smart Solution</strong></p>
+        </div>
+
+        <p>In the diagram, it is observed that the Device Analysis module in the <strong>Smart Solution</strong> interacts with other modules and layers. Initially, an entity, which may be a manager or software, requests an analysis, specifying which set of assets should be analyzed.</p>
+
+        <p>Next, the Device Analysis module retrieves the necessary management data for monitoring the requested assets. In <strong>Figure 24</strong>, the data request is directed to the storage module, which may include historical data stored on devices distributed across the infrastructure.</p>
+
+        <p>After collecting the necessary data to compose the current infrastructure scenario, the analysis module may request data formatting from the Data Processing module. This is due to the diversity of sources from which the data is collected. Although the data may have already been processed, there is a risk that it is not in a compatible format for processing.</p>
+
+        <p>The Device Analysis module may also perform some data structuring after standardization, depending on the needs of the View Generator module. Finally, the View Generator will create a general representation of the selected infrastructure and return the result to the analysis module, which, in turn, will send the response to the requesting entity.</p>
+
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/NilSousa16/archm.github.io/main/Figures/Figure%2025%20-%20Example%20of%20data%20processing%20in%20the%20analysis%20layer.png" alt="Descrição da imagem" style="max-width: 60%; display: block; margin: 0 auto;">
+          <p class="image-description"><strong>Figure 25 - Example of data processing in the analysis layer</strong></p>
+        </div>
+
       </section>
 
       <section id="data-processing-analysis">
         <h2>7.2 Data Processing</h2>
-        <p>Details of data processing analysis and its methods.</p>
+        <p>The Data Processing module is responsible for standardizing the data used in the analysis, as illustrated in <strong>Figure 23</strong>. The diagram presented in <strong>Figure 24</strong> shows that the Data Processing module may or may not be utilized during the analysis, which applies to all modules.</p>
+
+        <p>In addition to standardizing the data, this module is also responsible for data cleansing, if necessary. This involves the elimination of duplicate, incomplete, or any other inconsistent records. Thus, depending on the types of data structures used, the Data Processing module can be implemented in a customized manner to handle specific structures.</p>
+
+        <p>Similar to the example presented in <strong>Figure 20</strong>, this module can remove irrelevant data for the analysis. <strong>Figure 25</strong> illustrates an example of data processing, where the Device Analysis module sends a dataset—presented separately in the figure for illustrative purposes (moments 1 and 1A). After sending the data, the processing module performs conversion using the implemented logic. Subsequently, the processed data is returned to the Device Analysis module. In <strong>Figure 25</strong>, it can be observed that data processing results in the elimination of information considered irrelevant for the analysis (moment 2).</p>
       </section>
 
       <section id="view-generator">
         <h2>7.3 View Generator</h2>
-        <p>Overview of the view generator functionality in the system.</p>
+        <p>The View Generator module is responsible for creating an overview of the analyzed infrastructure. It receives ready-to-use data, collected by the Device Analysis module, allowing the View Generator to adopt a diagnostic analysis<sup>2</sup> approach to obtain a comprehensive panorama of the infrastructure. Additionally, this module can employ descriptive analyses<sup>3</sup> to understand what occurred during operations, thus facilitating data visualization.</p>
+
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/NilSousa16/archm.github.io/main/Figures/Figure%2026%20-%20Example%20of%20View%20Generator.png" alt="Descrição da imagem" style="max-width: 60%; display: block; margin: 0 auto;">
+          <p class="image-description"><strong>Figure 26 - Example of View Generator</strong></p>
+        </div>
+
+        <p>In the context of <strong>ArchM</strong>, the analysis layer can utilize one or even both forms of analysis presented. <strong>Figure 26</strong> illustrates, in a generic way, how this module can be executed. It can be observed that the management data of the devices are stored and retrieved by the analysis layer. The visualization module uses the processed data retrieved by the Device Analysis and Data Processing modules to generate a representation of the infrastructure. Finally, a file containing the analysis results is generated, which can be stored and/or presented graphically, for example.
+        </p>
+
+        <p class="footnote">
+        <p><strong>Notes:</strong></p>
+        <ul>
+          <li id="note2"><strong>2:</strong> Diagnostic Analysis: Using deep learning techniques to identify root causes of issues.</li>
+          <li id="note3"><strong>3:</strong> Descriptive Analysis: Through the automatic recognition of patterns in large datasets</li>
+        </ul>
+
+        </p>
+
       </section>
 
       <section id="device-analysis-smart-composition">
         <h2>7.4 Device Analysis in Smart Composition</h2>
-        <p>Explanation of device analysis in the context of smart composition.</p>
+        <p>This module has the same functionality as the Device Analysis module in the <strong>Smart Solution</strong>. However, it is not limited to analyzing just one <strong>Smart Solution</strong> but rather a set of them, meaning a <strong>Smart Composition</strong>. To perform this task, the Device Analysis module in the <strong>Smart Composition</strong> utilizes the analysis modules of the <strong>Smart Solutions</strong> from each managed environment. Additionally, some auxiliary modules are employed, as shown in <strong>Figure 23</strong>: the Data Sharing module, the Information Aggregator, and the View Generator.</p>
+
+        <p>Figure 27 provides an overview of the operation of the analysis module in the Smart Composition. It can be observed that each Smart Solution performs its analyses individually, while the analysis module in the Smart Composition is responsible for coordinating the assembly of an aggregated view of the overall situation.</p>
+
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/NilSousa16/archm.github.io/main/Figures/Figure%2027%20-%20Overview%20of%20Device%20Analysis%20in%20Smart%20Composition.png" alt="Descrição da imagem" style="max-width: 80%; display: block; margin: 0 auto;">
+          <p class="image-description"><strong>Figure 27 - Overview of Device Analysis in Smart Composition</strong></p>
+        </div>
+
       </section>
 
       <section id="information-aggregator">
         <h2>7.5 Information Aggregator</h2>
-        <p>Details about the information aggregator in the system.</p>
+        <p>The Information Aggregator is an auxiliary module, as illustrated in <strong>Figure 23</strong>, that is used by the modules performing analysis in the <strong>Smart Composition</strong>. It is responsible for organizing all the information received from the <strong>Smart Solutions</strong> and enabling the joint analysis of these data.
+        </p>
+
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/NilSousa16/archm.github.io/main/Figures/Figure%2028%20-%20Fault%20Identification%20Layer.png" alt="Descrição da imagem" style="max-width: 60%; display: block; margin: 0 auto;">
+          <p class="image-description"><strong>Figure 28 - Fault Identification Layer</strong></p>
+        </div>
+
+        <p>In <strong>Figure 27</strong>, the Information Aggregator is presented as the module that receives analysis data from the <strong>Smart Solutions</strong>. This function allows it to perform tasks such as standardization, deletion, and correction of data, similar to data cleansing during the analysis. It is important to note that the Device Analysis module must coordinate the actions of this module in the <strong>Smart Composition</strong>.</p>
       </section>
 
       <section id="fault-identification-layer">
         <h2>8. Fault Identification Layer</h2>
-        <p>Overview of the fault identification layer in the architecture.</p>
+        <p>This layer aims to utilize the captured management data to identify potential anomalies that may occur in the <strong>Smart Solution</strong>. Any situation that interferes with the operation of the infrastructure is considered an anomaly. Examples include hardware overload, delays in software execution, and slow network connections. These parameters can be defined as needed within a platform.
+        </p>
+
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/NilSousa16/archm.github.io/main/Figures/Figure%2029%20-%20Execution%20sequence%20of%20the%20fault%20identification%20module%20for%20devices%20in%20the%20smart%20solution.png" alt="Descrição da imagem" style="max-width: 90%; display: block; margin: 0 auto;">
+          <p class="image-description"><strong>Figure 29 - Execution sequence of the fault identification module for devices in the smart solution</strong></p>
+        </div>
+
+        <p><strong>Figure 28</strong> presents the organization of the Fault Identification Layer, showing its modules and the relationships between them and the other layers. It can be observed that there are two main modules and two auxiliary modules, along with interactions with the modules of the storage component and the analysis layer.</p>
       </section>
 
       <section id="fault-identification-smart-solution">
         <h2>8.1 Fault Identification in Devices within the Smart Solution</h2>
-        <p>Explanation of fault identification in devices in the smart solution.</p>
+        <p>
+          The <strong>Fault Identification</strong> module is responsible for detecting potential failures that may occur in a <strong>Smart Solution</strong>. It coordinates the retrieval of relevant data and requests the current status of the <strong>Smart Solution</strong>, as shown in <strong>Figure 28</strong>, through connections with the storage and analysis layer modules.
+        </p>
+        <p>
+          The diagram in <strong>Figure 29</strong> presents a generic execution sequence of this module. Initially, there is a request made to the <strong>Fault Identification</strong> module. Subsequently, the module requests the status of the devices from the analysis layer, specifically from the <strong>Device Analysis</strong> module in the <strong>Smart Solution</strong>. After this step, the module retrieves historical data to assist in identifying failures.
+        </p>
+        <p>
+          Next, the <strong>strategy analysis</strong> module defines which possible actions (scenarios) can be executed to resolve the issue. Finally, the <strong>scenario generator</strong> determines which scenario will be used, as only one of the scenarios will be chosen as the potential cause of the failures in the <strong>Smart Solution</strong>. It is important to note that this scenario can be predefined, which would exclude these steps.
+        </p>
+
       </section>
 
       <section id="strategy-analyzer">
         <h2>8.2 Strategy Analyzer</h2>
-        <p>Details about the strategy analyzer component.</p>
+        <p>
+          The <strong>Strategy Analyzer</strong> module is utilized by all <strong>fault identification</strong> modules, as shown in <strong>Figure 28</strong>. This module is responsible for using the data transferred by the identification modules to define which actions can be taken to correct the failure. For example, if the <strong>fault identification</strong> module determines that a gateway is experiencing a high delay in sending information, the <strong>Strategy Analyzer</strong> module must identify different sets of actions that can resolve the gateway issue.
+        </p>
+        <p>
+          In <strong>Figure 30</strong>, it can be observed that this module may not need to create actions to correct the failure but can rely on a set of pre-established strategies. In this situation, the module simply forwards which sets of actions can be executed to the <strong>scenario generator</strong> module. However, there is nothing preventing the implementation of a solution where actions are generated dynamically.
+        </p>
+
       </section>
 
       <section id="scenario-generator">
         <h2>8.3 Scenario Generator</h2>
-        <p>Overview of the scenario generator used for fault identification.</p>
+        <p>
+          After the actions to be taken in response to a failure are selected, the <strong>scenario generator</strong> module will be responsible for defining which action or scenario will be executed to correct the problem.
+        </p>
+        <p>
+          In <strong>Figure 30</strong>, the <strong>scenario generator</strong> presents the possible actions generated or pre-established by the <strong>Strategy Analyzer</strong> module. Next to each action, there is a percentage indicating which one (scenario) has the highest probability of resolving the issue.
+        </p>
+
       </section>
 
       <section id="fault-identification-smart-composition">
         <h2>8.4 Fault Identification in Devices within the Smart Composition</h2>
-        <p>Details of fault identification in devices within the smart composition.</p>
+        <p>
+          The <strong>Fault Identification</strong> module for devices in the <strong>Smart Composition</strong> is responsible for detecting potential failures that may occur within a <strong>Smart Composition</strong>. This module considers not only a single <strong>Smart Solution</strong> but a set of them.
+        </p>
+        <p>
+          The execution sequence of this module is presented in the diagram of <strong>Figure 31</strong>.
+        </p>
+
+        FIGURE 30 .....
+
+        <p>First, a request is made by an entity to execute fault identification in the infrastructure. Next, the module will request a set of data from the analysis layer and the storage layer. With this information, the module will identify the potential issue occurring and relay this information to the Strategy Analyzer module, which will propose actions to correct the failure.</p>
+
+        FIGURE 31 ...
+
       </section>
 
       <section id="intervention-layer">
         <h2>9. Intervention Layer</h2>
-        <p>Overview of the intervention layer and its purpose.</p>
+        <p>
+          The <strong>Intervention Layer</strong> is responsible for managing the necessary modifications in the <strong>Smart Solutions</strong> to ensure the proper functioning of the infrastructure. <strong>Figure 32</strong> presents the modules of the <strong>Intervention Layer</strong> and the relationships between them. For simplification, the relationships of the modules with other layers have been omitted from the figure.
+        </p>
+        <p>
+          The <strong>Intervention Layer</strong> consists of two main modules and three auxiliary modules. The main modules are: <strong>Intervention in Devices within the Smart Solution</strong> and <strong>Intervention in Devices within the Smart Composition</strong>. These modules are responsible for managing all the necessary steps to carry out the intervention. The auxiliary modules, which handle specific tasks, include: <strong>Intervention Generator</strong>, <strong>Intervention Analyzer</strong>, and <strong>Maintenance by Intervention</strong>.
+        </p>
+
+        FIGURE 32 .....
+
       </section>
 
       <section id="intervention-smart-solution">
         <h2>9.1 Intervention in Devices the Smart Solution</h2>
-        <p>Details of intervention in devices within the smart solution.</p>
+        <p>
+          This module is responsible for implementing modifications to prevent and correct failures or low performance in the <strong>Smart Solution</strong> infrastructure. To achieve this, it utilizes the auxiliary modules <strong>Intervention Generator</strong> and <strong>Intervention Analyzer</strong>, in addition to interacting with components from the <strong>storage</strong>, <strong>fault identification</strong>, and <strong>maintenance layers</strong>. This interaction allows for data retrieval and access to the necessary devices, optimizing the intervention in the <strong>Smart Solution</strong>.
+        </p>
+
+        FIGURE 33 ....
+
+        <p>
+          <strong>Figure 33</strong> presents the sequence diagram of a possible execution of the <strong>Intervention module</strong>. It can be seen that the intervention request is made by the <strong>Fault Identification layer</strong>. The <strong>Intervention module</strong> then retrieves data from the <strong>Fault Identification layer</strong>, potentially requesting additional data from the <strong>storage layer</strong>, depending on the implementation and the sufficiency of the existing information.
+        </p>
+        <p>
+          After collecting the data, the <strong>Intervention module</strong> activates the <strong>Intervention Generator</strong> and the <strong>Intervention Analyzer</strong> to propose a potential intervention in the infrastructure of the devices within the <strong>Smart Solution</strong>. It is important to highlight that, although the <strong>Fault Identification layer</strong> suggests an action, only the <strong>Intervention layer</strong> can verify the feasibility of executing that correction. Finally, the resulting configuration is passed to the <strong>Maintenance by Intervention module</strong>, which implements the necessary changes in the devices.
+        </p>
+
       </section>
 
       <section id="intervention-generator">
         <h2>9.2 Intervention Generator</h2>
-        <p>Overview of the intervention generator and its functionality.</p>
+        <p>
+          The <strong>Intervention Generator module</strong> is responsible for adapting the scenario identified by the <strong>Problem Identification layer</strong> to execute interventions in <strong>Smart Solutions</strong> and <strong>Smart Compositions</strong>. The intervention is based on the information from the <strong>Fault Identification layer</strong>, considering the specificities of each solution. The <strong>Intervention Generator</strong> checks whether the configurations suggested as corrective actions can be applied directly or if they need adjustments due to the infrastructure's particularities.
+        </p>
+        <p>
+          <strong>Figure 34</strong> provides an overview of the execution of the <strong>Intervention Generator module</strong>. It shows how the data obtained from the <strong>Fault Identification layer</strong> is used by the <strong>Intervention Generator</strong>, which then produces the best possible configurations based on the specific characteristics of the infrastructure. Finally, this information is sent to the <strong>Intervention Analysis module</strong>.
+        </p>
+
+        FIGURE 34 ....
+
       </section>
 
       <section id="intervention-analysis">
         <h2>9.3 Intervention Analysis</h2>
-        <p>Explanation of intervention analysis in the system.</p>
+        <p>
+          The <strong>Intervention Analysis Module</strong> is responsible for selecting the best configuration for the <strong>Smart Solution</strong> and/or <strong>Smart Composition</strong>. To achieve this, it must take into account the capacity for changes that can be made, as well as the permissions for the possible modifications. For instance, a device may be running a critical process that cannot be interrupted or transferred to another device.
+        </p>
+
+        FIGURE 35 ....
+
+        <p>In <strong>Figure 34</strong>, it is observed that the <strong>Intervention Analysis Module</strong> receives information about the possible configurations from the <strong>Intervention Generator Module</strong>. Then, it performs database checks to evaluate the permissions and privileges that allow for the implementation of the configuration. Based on this information, the <strong>Intervention Analysis Module</strong> selects the best possible configuration, considering the current state of the infrastructure.</p>
+
       </section>
 
       <section id="intervention-smart-composition">
         <h2>9.4 Intervention on Devices in the Smart Composition</h2>
-        <p>Details on intervention in devices within the smart composition.</p>
+        <p>The <strong>Device Intervention Module</strong> handles the modifications that need to be made in the <strong>Smart Composition</strong> to address the problems identified by the <strong>Fault Identification Layer</strong>. It leverages auxiliary components like the <strong>Intervention Generator</strong> and <strong>Intervention Analysis</strong>. Additionally, it uses the <strong>Storage Layer</strong> to retrieve data that assists in defining the intervention approach, as well as the <strong>Fault Identification</strong> and <strong>Maintenance modules</strong> to carry out the necessary modifications. It’s important to note that communication with the devices is conducted through another module, called <strong>Maintenance Intervention</strong>.</p>
+
+        <p><strong>Figure 35</strong> presents the execution sequence of the <strong>Device Intervention Module</strong>. In it, we see a request made by an entity, which would be the <strong>Problem Identification Layer</strong>. The module then requests the necessary data from the <strong>Problem Identification</strong> and <strong>Storage layers</strong>. From this point, the <strong>Intervention Generator</strong> and <strong>Intervention Analysis modules</strong> define the best strategy for modifying the devices in the <strong>Smart Composition</strong>. Finally, the <strong>Maintenance Intervention Layer</strong> communicates with the <strong>Smart Composition</strong> to implement the necessary modifications.</p>
+
       </section>
 
       <section id="maintenance-intervention">
         <h2>9.5 Maintenance by Intervention</h2>
-        <p>Details about maintenance by intervention processes.</p>
+        <p>The <strong>Maintenance Intervention Module</strong> is responsible for managing communication between the <strong>Intervention Layer</strong> and the <strong>Maintenance Layer</strong> to implement intervention configurations in <strong>Smart Solutions</strong>. To achieve this, the module must coordinate the transmission of configuration data to each <strong>Smart Solution</strong>, taking into account the communication characteristics and specific standards of each solution.</p>
+
       </section>
 
       <section id="storage-layer">
         <h2>10. Storage Layer</h2>
-        <p>Overview of the storage layer in the architecture.</p>
+        <p>All storage resources utilized in the <strong>ArchM</strong> are considered part of the <strong>storage layer</strong>, which encompasses everything from cloud databases to temporary storage on simple devices. Thus, the <strong>storage layer</strong> is responsible for coordinating the storage and retrieval of management data within the infrastructure.</p>
+
+        <p><strong>Figure 36</strong> presents the components of the <strong>storage layer</strong> and their relationships. This layer consists of three modules: <strong>data storage management</strong>, <strong>data retrieval management</strong>, and <strong>data sharing</strong>. The <strong>Storage Base Search</strong> module is responsible for the logic of searching for data distributed across different databases. It can be implemented as a separate module or integrated into another module, depending on the chosen approach. It is important to emphasize that, in an implementation of the <strong>ArchM</strong>, some functionalities of these modules may be executed by existing solutions in storage services.</p>
+
+        FIGURE 36 ...
+
       </section>
 
       <section id="management-data-storage">
         <h2>10.1 Management Data Storage</h2>
-        <p>Details about how data is stored and managed in the system.</p>
+        <p>The <strong>management data storage module</strong> is responsible for receiving management information from the <strong>monitoring layer</strong> and appropriately storing it in various databases that may be in use. This module also uses the <strong>Storage Base Search</strong> to coordinate the distributed storage of the received management information. Although not depicted in <strong>Figure 36</strong>, other layers may utilize this module to store data.</p>
+
       </section>
 
       <section id="management-data-recover">
         <h2>10.2 Management Data Recover</h2>
-        <p>Explanation of how data recovery is managed within the system.</p>
+        <p>This module is responsible for querying the <strong>distributed management data</strong> and returning it as a set of information formatted according to the requester’s needs. To do this, it uses the <strong>Storage Base Search module</strong> to retrieve the distributed data and the <strong>data sharing module</strong> to meet the specific characteristics of the requester.</p>
+
       </section>
 
       <section id="data-sharing">
         <h2>10.3 Data Sharing</h2>
-        <p>Overview of the data sharing functionality in the system.</p>
+        <p>The <strong>data sharing module</strong> addresses issues related to the use of <strong>management data</strong> by different management solutions. For example, the <strong>management data</strong> produced by a Smart Solution can be used to select intervention strategies in a Smart Composition. Additionally, the <strong>data sharing module</strong> manages the logic of external access to <strong>management data</strong>, allowing third-party applications that are not directly linked to the Smart Solution to access this information.</p>
+
       </section>
 
       <section id="storage-base-search">
         <h2>10.4 Storage Base Search</h2>
-        <p>Details of the storage base search and how it is implemented.</p>
+        <p>The <strong>Storage Base Search</strong>, as presented in Figure 36, is not considered a native module, since its functionalities will likely be performed by existing technological solutions. However, it is responsible for determining where the <strong>management data</strong> will be stored and what format will be used, taking into account the needs for managing the infrastructure.</p>
+
       </section>
 
       <section id="references">
         <h2>References</h2>
-        <p>List of references used in the documentation.</p>
+        <ol>
+          <li id="ref1">Shelby, Z., Hartke, K., and Bormann, C., 2014. <strong>The constrained application protocol (CoAP)</strong> (No. rfc7252).</li>
+          <li id="ref2">Sanjuan, E.B., Cardiel, I.A., Cerrada, J.A., and Cerrada, C., 2020. <strong>Message queuing telemetry transport (MQTT) security: A cryptographic smart card approach</strong>. IEEE Access, 8, pp.115051-115062.</li>
+          <li id="ref3">Vinoski, S., 2006. <strong>Advanced message queuing protocol</strong>. IEEE Internet Computing, 10(6), pp.87-89.</li>
+          <li id="ref4">Prazeres, C., and Serrano, M., 2016, March. <strong>Soft-iot: Self-organizing fog of things</strong>. In 2016 30th international conference on advanced information networking and applications workshops (WAINA) (pp. 803-808). IEEE.</li>
+        </ol>
       </section>
 
     </main>
