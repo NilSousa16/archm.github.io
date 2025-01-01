@@ -228,3 +228,74 @@ footer {
         font-size: 20px;
     }
 }
+
+/* Botão de menu (hamburger) */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+}
+
+@media (max-width: 768px) {
+  /* Menu fixado na parte superior da tela */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* O menu ocupa toda a altura da tela */
+    background-color: #34495e;
+    color: white;
+    overflow-y: hidden; /* Oculta a barra de rolagem */
+    transform: translateY(-100%); /* Inicialmente escondido acima da tela */
+    transition: transform 0.3s ease-in-out;
+  }
+
+  /* Exibe o botão de menu em telas pequenas */
+  .menu-toggle {
+    display: block;
+  }
+
+  /* Menu aberto: o menu desliza para baixo */
+  nav.open {
+    transform: translateY(0);
+    overflow-y: scroll; /* Permite rolar o conteúdo dentro do menu */
+  }
+
+  /* Remove o margin-left no conteúdo principal quando o menu está escondido */
+  main {
+    margin-left: 0;
+    width: 100%; /* Para ocupar toda a largura disponível */
+  }
+
+  /* Faz o conteúdo principal rolar ao invés de bloquear a rolagem */
+  body {
+    overflow-y: scroll; /* Garante que o conteúdo do corpo ainda possa rolar */
+  }
+}
+
+/* Ajustes de responsividade já existentes */
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.5em;
+  }
+
+  header p {
+    font-size: 0.8em;
+  }
+
+  nav h2 {
+    font-size: 16px;
+  }
+
+  nav a {
+    font-size: 14px;
+  }
+}
