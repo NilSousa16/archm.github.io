@@ -151,6 +151,10 @@ footer {
   margin-botton: 0px;
 }
 
+footer h1, footer p {
+  padding-left: 20%;
+}
+
 /* Responsividade para o header */
 @media (max-width: 768px) {
   header h1 {
